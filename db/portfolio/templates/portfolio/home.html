@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - My Blog{% endblock %}
+
+{% block content %}
+    <h2>Welcome to My Blog</h2>
+    <p>This is the home page of my blog. Here you can find various articles and posts.</p>
+
+    {# Display students grouped by class #}
+    <h3>Students</h3>
+    {% regroup students by class as class_list %}
+    <ul>
+        {% for group in class_list %}
+            <li><strong>{{group.grouper}}</strong></li>
+            <ul>
+                {% for student in group.list %}
+                    <li >{{ student.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+    <p>Ratio : {% widthratio students|length 12 100 %}</p>
+{{ spaceless }}
+    <span> This is space </span></span> Remove the space around </span>
+{{ endspaceless }}
+
+    {% filter upper %}This text will be converted to uppercase{% endfilter %}
+
+    <form method="post">WW
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ author_name }}">
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}

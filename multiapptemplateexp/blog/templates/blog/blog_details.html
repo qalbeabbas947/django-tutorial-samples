@@ -1,0 +1,58 @@
+{% comment %}
+Hidden multiline 1comment
+Hidden multiline 2comment
+{% endcomment %}
+
+{# Single line comment 1 #}
+<html lang="en">
+
+<head>
+    <title>Blog detail</title>
+</head>
+
+<body>
+    <p>Blog author: {{ author|yesno:"Yes,No,Maybe" }}</p>
+    {% comment %} Text Filters {% endcomment %}
+    <p>Blog Title Normal: {{ title }}</p>
+    <p>Blog Title Uppercase: {{ title|upper }}</p>
+    <p>Blog Title Lowercase: {{ title|lower }}</p>
+    <p>Blog Title Titlecase: {{ title|title }}</p>
+    <p>Truncate: {{ title|truncatechars:5 }}</p>
+    <p>Truncate Words: {{ title|truncatewords:1 }}</p>
+    <p>Line Breaks: {{ description|linebreaks }}</p>
+<hr>
+    {% comment %} Number Filters {% endcomment %}
+    <p>Price: {{ price }}</p>
+    <p>Price(+5): {{ price|add:5 }}</p>
+    <p>Price(-5): {{ price|add:-5 }}</p>
+    <hr>
+    {% if price > 100 %}
+    <p>Price is greater than 100</p>
+    {% else %}
+    <p>Price is less than or equal to 100</p>
+    {% endif %}
+
+    {% if price|divisibleby:100 %}
+    <p>Price is divisible by 100</p>
+    {% else %}
+    <p>Price is not divisible by 100</p>
+    {% endif %}
+    <p>Floatformat: {{ price|floatformat:2 }}</p>
+    <hr>
+    {% comment %} List Filters {% endcomment %}
+    <p>tags: {{ tags|join:", " }}</p>
+    <p>tags length: {{ tags|length }}</p>
+    <p>tags First: {{ tags|first }}</p>
+    <p>tags Last: {{ tags|last }}</p>
+    <p>tags Slice: {{ tags|slice:":2" }}</p>
+
+    {% comment %} Date Filters {% endcomment %}
+    <p>Created At: {{ created_at }}</p>
+    <p>Content: {{ description }}</p>
+    <p>Content safe: {{ description|safe }}</p>
+    <p>Author: {{ author|default:"No author provided" }}</p>
+    <p>Created At: {{ created_at }}</p>
+    <p>Tags: {{ tags|join:", " }}</p>
+</body>
+
+</html>

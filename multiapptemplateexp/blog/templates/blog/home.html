@@ -1,0 +1,24 @@
+{% comment %} 
+Hidden multiline 1comment 
+Hidden multiline 2comment
+{% endcomment %}
+
+{# Single line comment 1 #}
+<html lang="en">
+    <head>
+        <title>Blog Home</title>
+    </head>
+    <body>
+        <h1>Blog Home</h1>
+        <p>Name: {{ name }}</p>
+        <p>Age: {{ age }}</p>
+        <p>Skills: {{ skills|join:", " }}</p>
+        <p>Blog: {{ blog.title }}</p>
+        <p>Content: {{ blog.content }}</p>
+        <p>Content safe: {{ blog.content|safe }}</p>
+        <p>Default Value: {{ empty_value|default:"No value provided" }}</p>
+        <p>Default Value if no Data: {{ empty_value|default_if_none:"No Data" }}</p>
+        <p>Created At: {{ blog.created_at }}</p>
+        <p>User: {{ user.name }}, Age: {{ user.age }}</p>
+    </body>
+</html>

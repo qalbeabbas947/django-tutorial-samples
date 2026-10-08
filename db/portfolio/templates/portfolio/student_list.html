@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - My Blog{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Student List</h2>
+    {% regroup students by city as city_list %}
+    <ul>
+        {% for group in city_list %}
+            <li><strong>{{group.grouper}}</strong></li>
+            <ul>
+                {% for student in group.list %}
+                    <li >{{ student.name }} of {{ student.age }} years old.</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+
+    {% for student in students %}
+        <p>{{ student.name }} is {{ student.age }} years old.</p>
+    {% endfor %}
+{% endblock %}

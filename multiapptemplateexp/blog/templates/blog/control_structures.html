@@ -1,0 +1,71 @@
+<html lang="en">
+
+    <head>
+        <title>Blog Control Structures</title>
+    </head>
+
+    <body>
+        <h1>Blog Control Structures</h1>
+        <p>Today is: {{today}}</p>
+        {% if blogs.0.is_featured == True %}
+            <p>
+                <strong>Featured Blog:</strong> {{blogs.0.title}}
+            </p>
+        {% endif %}
+
+        {% comment %} For loop {% endcomment %}
+        <ul>
+            {% for blog in blogs %}
+                <li>{{forloop.counter}}: {{blog.title}} - {{blog.author}} {{blog.is_featured}}</li>
+            {% empty %}
+                <p>No blogs available.</p>
+            {% endfor %}
+        </ul>
+        {% comment %} With Condtion {% endcomment %}
+        {% with total_blogs=blogs|length %}
+            <p>Total Blogs: {{total_blogs}}</p>
+        {% endwith %}
+
+        {% comment %} cycle loop in table {% endcomment %}
+        <hr>#
+        <h2>Blog Table</h2>
+        <table cellspacing="1" cellpadding="5" border="0">
+            <thead>
+                <tr style="background-color:lightgreen">
+                    <th>Index</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Featured</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for blog in blogs %}
+                    <tr style="background-color: {% cycle 'lightblue' 'lightgreen' %}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{blog.title}}</td>
+                        <td>{{blog.author}}</td>
+                        <td>{{blog.is_featured}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% comment %} first of {% endcomment %}
+        <p>First author: {% firstof blogs.2.author "No title available" %}</p>
+        <hr>
+
+        {% comment %} varbatim {% endcomment %}
+        {% verbatim %}
+            <p>First author: {{ blogs.2.author }}</p>
+        {% endverbatim %}
+<hr>
+        {% comment %} autoescape {% endcomment %}
+        {% autoescape off %}
+            <p>Auto escape off: {{ html_code }}</p>
+        {% endautoescape %}
+        <p>Auto escape On: {{ html_code }}</p>
+        
+        <hr>
+    </body>
+
+</html>
